@@ -1,4 +1,4 @@
-# CMC
+# CMC (Chinese Mathematics Competitions)
 This repository contains three pdfs.
 - A conclusion to CMC
 - CMC test papers from the first to the tenth (latest)
