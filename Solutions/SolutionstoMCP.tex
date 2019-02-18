@@ -1,0 +1,1083 @@
+%-*- coding: UTF-8 -*-
+
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{yhmath}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{geometry}
+\usepackage{bigints}
+\geometry{a4paper,centering,scale=0.8}
+\usepackage[format=hang,font=small,textfont=it]{caption}
+\usepackage[nottoc]{tocbibind}
+\usepackage{setspace}		%使用间距宏包
+\usepackage{ctex}
+\usepackage{fontspec}
+\usepackage{color}
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage{extarrows}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+    circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+\robustify{\circled}
+\usepackage{array}
+\usepackage{booktabs}
+\newcounter{rowno}
+
+\usepackage[ colorlinks,
+linkcolor=black,
+anchorcolor=black,
+citecolor=black]{hyperref}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
+\renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
+
+%使section后面也有引导点
+\usepackage{titletoc} 
+\titlecontents{section}[0pt]{\addvspace{2pt}\filright}
+{\contentspush{\thecontentslabel\ }}
+{}{\titlerule*[8pt]{.}\contentspage}
+
+%新命令
+\newcommand\dif{\mathrm{d}}
+\newcommand\no{\noindent}
+\newcommand\dis{\displaystyle}
+\newcommand\ls{\leqslant}
+\newcommand\gs{\geqslant}
+
+\newcommand\limit{\dis\lim\limits}
+\newcommand\limn{\dis\lim\limits_{n\to\infty}}
+\newcommand\limxz{\dis\lim\limits_{x\to0}}
+\newcommand\limxi{\dis\lim\limits_{x\to\infty}}
+\newcommand\limxpi{\dis\lim\limits_{x\to+\infty}}
+\newcommand\limxni{\dis\lim\limits_{x\to-\infty}}
+
+\newcommand\sumn{\dis\sum\limits_{n=1}^{\infty}}
+\newcommand\sumnz{\dis\sum\limits_{n=0}^{\infty}}
+\newcommand\sumk{\dis\sum\limits_{k=1}^{\infty}}
+\newcommand\sumkz{\dis\sum\limits_{k=0}^{\infty}}
+\newcommand\sumin{\dis\sum\limits_{i=1}^{n}}
+\newcommand\sumizn{\dis\sum\limits_{i=0}^{n}}
+\newcommand\sumkn{\dis\sum\limits_{k=0}^n}
+\newcommand\sumkfn{\dis\sum\limits_{k=1}^n}
+
+\newcommand\pzx{\dis\frac{\partial z}{\partial x}}
+\newcommand\pzy{\dis\frac{\partial z}{\partial y}}
+
+\newcommand\pfx{\dis\frac{\partial f}{\partial x}}
+\newcommand\pfy{\dis\frac{\partial f}{\partial x}}
+
+\newcommand\pzxx{\dis\frac{\partial^2 z}{\partial x^2}}
+\newcommand\pzxy{\dis\frac{\partial^2 z}{\partial x\partial y}}
+\newcommand\pzyx{\dis\frac{\partial^2 z}{\partial y\partial x}}
+\newcommand\pzyy{\dis\frac{\partial^2 z}{\partial y^2}}
+
+\newcommand\pfxx{\dis\frac{\partial^2 f}{\partial x^2}}
+\newcommand\pfxy{\dis\frac{\partial^2 f}{\partial x\partial y}}
+\newcommand\pfyx{\dis\frac{\partial^2 f}{\partial y\partial x}}
+\newcommand\pfyy{\dis\frac{\partial^2 f}{\partial y^2}}
+
+\newcommand\intzi{\dis\int_{0}^{+\infty}}
+\newcommand\intii{\dis\int_{-\infty}^{+\infty}}
+\newcommand\intd{\dis\int}
+\newcommand\intab{\dis\int_a^b}
+
+%调整分数数字与分数线的间距
+%\renewcommand{\dfrac}[2]{{
+%\renewcommand{\arraystretch}{1.375}
+%\begingroup\displaystyle
+%\rule[0pt]{0pt}{11pt}#1\endgroup%
+%\over\displaystyle\rule[-3pt]{0pt}{11pt}#2
+%}}%
+
+\newenvironment{mfrac}[2]%
+{\raise0.5ex\hbox{$#1$}\! \left/ \! \lower0.5ex\hbox{$#2$}\right.}
+
+%定义新数学符号
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\grad}{\bf{grad}}
+
+%加下划线
+\makeatletter
+\newcommand\dlmu[2][3cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\makeatother
+
+\newtheoremstyle{solve}% name
+{3pt}% Space above
+{3pt}% Space below
+{\rmfamily}% Body font
+{}% Indent amount
+{\bfseries}% Theorem head font
+{:}% Punctuation after theorem head
+{.5em}% Space after theorem head
+{}% Theorem head spec (can be left empty, meaning normal)
+\theoremstyle{solve}
+\newtheorem*{solve}{Solution}
+
+\title{\heiti 全国大学生数学竞赛预赛（非数学类）试题}
+\author{\kaishu 唐渊 (XuanYuan)}
+\date{\today}
+
+\bibliographystyle{plain}
+
+%开始写文章
+\begin{document}
+    
+\maketitle
+
+\vspace{5cm}
+
+\tableofcontents
+
+\newpage
+
+\section{第九届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、填空题（总分42分，共6小题，每小题7分）}
+
+\no 1. 已知可导函数 $f(x)$ 满足 $\dis f(x)\cos x+2\int_0^xf(t)\sin t \dif t=x+1$，
+则$f(x)=$ \dlmu{$\sin x+\cos x$}。 
+
+\begin{solve}
+
+Set $x=0$, we obtain $f(0)=1$. Take the derivative of the equation, $f'(x)\cos x-f(x)\sin x
++2f(x)\sin x=1,\ f'(x)+\tan x\cdot f(x)=\sec x$, which is non-homogeneous linear differential equation.
+$\dis\int \tan x\dif x=-\ln \cos x,\ f(x)=e^{-(-\ln\cos x)}\left(\int e^{-\ln\cos x}\sec x\dif x+C\right)=\cos x\left(\int \sec^2x\dif x+C\right)\dif x=\cos x\tan x+C\cos x=\sin x+C\cos x.$
+Since $f(0)=1$, we obtain $C=1$. Thus $f(x)=\sin x+\cos x.$
+
+\end{solve}
+
+\no 2. $\dis\lim_{n \to \infty}\sin^2\left(\pi\sqrt{n^2+n}\right)=$ \dlmu{1}。
+
+\begin{solve}
+
+We use the periodicity of the sine function.
+$\dis\limn \sin^2\left(\pi\sqrt{n^2+n}\right)
+=\limn \sin^2\left(\pi\sqrt{n^2+n}-n\pi\right)
+=\limn \sin^2\left(\pi\dfrac{n}{\sqrt{n^2+n}+n}\right)
+=\limn \sin^2\dfrac{\pi}{2}=1.$
+
+\end{solve}
+
+\no 3. 设 $w=f(u,v)$ 具有二阶连续偏导数，且 $u=x-cy$，$v=x+cy$，其中 $c$ 为非零常数，则
+ $\dis   w_{xx}-\frac{1}{c^2}w_{yy}=$\dlmu[2cm]{$4f_{12}$}。
+
+\begin{solve}
+
+$w_x=f_1+f_2,\ w_y=f_1\cdot(-c)+f_2\cdot c,\ w_{xx}=f_{11}+f_{12}+f_{21}+f_{22},\ 
+w_{yy}=f_{11}\cdot(-c)(-c)+f_{12}\cdot(-c)c+f_{21}\cdot c(-c)+f_{22}\cdot c^2
+=c^2(f_{11}+f_{22}-f_{12}-f_{21}).$ 
+Since $f$ has second order continuous partial derivatives, we obtain $f_{12}=f_{21}$.
+Thus $w_{xx}-\dfrac{1}{c^2}w_{yy}=2f_{12}-(-2f_{12})=4f_{12}.$
+
+\end{solve}
+
+\no 4. 设 $f(x)$ 有二阶导数连续，且 $f(0)=f'(0)=0$，$ f''(0)=6$，则
+$\displaystyle\lim_{x \to 0}\frac{f(\sin^2x)}{x^4}=$\dlmu{3}。
+
+\begin{solve}
+
+Set $f(x)=3x^2$, $f(x)$ satisfies $f(0)=f'(0)=0,\ f''(0)=6.$ By substitution, we obtain $
+\limxz \dfrac{f(\sin^2x)}{x^4}=\limxz \dfrac{3\sin^4x}{x^4}=3.$
+
+\end{solve}
+
+\no 5. 不定积分 $\dis I=\int\frac{e^{-\sin x}\sin 2x}{(1-\sin x)^2} \dif x=$
+\dlmu{$\dfrac{2e^{-\sin x}}{1-\sin x}+C$}。
+
+\begin{solve}
+
+$\dis \int\frac{e^{-\sin x}\sin 2x}{(1-\sin x)^2} \dif x
+=\int\frac{2e^{-\sin x}\sin x\cos x}{(1-\sin x)^2} \dif x
+\xlongequal{u=\sin x}\int\frac{2e^{-u}u}{(1-u)^2}\dif u
+=-2\int e^{-u}\frac{1-u-1}{(1-u)^2}\dif u
+=2\int e^{-u}\left(-\dfrac{1}{1-u}+\dfrac{1}{(1-u)^2}\right)\dif u
+=2\int \left(\dfrac{e^{-u}}{1-u}\right)'\dif u
+=\dfrac{2e^{-u}}{1-u}+C
+\xlongequal{u=\sin x}\dfrac{2e^{-\sin x}}{1-\sin x}+C.$
+
+\end{solve}
+
+\no 6. 记曲面 $z^2=x^2+y^2$ 和 $\dis z=\sqrt{4-x^2-y^2}$ 围成的空间区域为 $V$，
+则三重积分 
+ $\dis\iiint_V z \dif x \dif y \dif z=$\dlmu[1cm]{$2\pi$}。
+
+\begin{solve}
+
+Since the curve is circular cone surface, we use spherical coordinate to solve this first kind volume integration. First we find the intersection of the two curve. 
+$\dis z=\sqrt{4-x^2-y^2}=\sqrt{4-z^2},\ z^2=2,\ z=\sqrt{2}(z\gs0),\ \varphi_{\max}
+=\arccos\dfrac{\sqrt{2}}{2}=\dfrac{\pi}{4}$, then we can write down the parameters' range: $\rho\in[0,2],\ \varphi\in\left[0,\dfrac{\pi}{4}\right],\ \theta\in[0,2\pi].$ Thus the integration 
+
+\no $\dis\iiint_V z \dif x \dif y \dif z
+=\int_0^{2\pi}\dif \theta\int_0^{\tfrac{\pi}{4}}\dif \varphi\int_0^2 \rho\cos\varphi\cdot
+\rho^2\sin\varphi\dif \rho
+=2\pi\dfrac{2^4}{4}\int_0^{\tfrac{\pi}{4}}\dfrac{1}{2}\sin 2\varphi\dif \varphi
+\xlongequal{\gamma=2\varphi}2\pi\int_0^{\tfrac{\pi}{2}}\sin\gamma\dif\gamma
+=2\pi.$
+
+\end{solve}
+
+\end{spacing}
+
+\begin{spacing}{2.5}
+\no {\heiti 二、（本题满分14分）} 
+
+  设二元函数 $f(x,y)$ 在平面上有连续的二阶偏导数，对任何角度 $\alpha$ ，定义一元函数
+ $g_\alpha(t)=f(t\cos \alpha, t\sin \alpha).$
+若对任何 $\alpha$ 都有 $\dis \frac{\dif g_\alpha(0)}{\dif t}=0$ 
+且 $\dis \frac{\dif^2 g_\alpha(0)}{\dif t^2}>0.$ 证明 $f(0,0)$ 是 $f(x,y)$ 的极小值。
+
+\begin{solve}
+
+$\dis g'_\alpha(0)=\cos\alpha f_x(0,0)+\sin\alpha f_y(0,0)=(\cos\alpha\ \sin\alpha)
+\binom{f_x(0,0)}{f_y(0,0)}=0\Longrightarrow\binom{f_x(0,0)}{f_y(0,0)}
+=\stackrel{\rightarrow}{0}\Longrightarrow f_x(0,0)=f_y(0,0)=0.$ 
+Thus $f(0,0)$ is the standing point of $f(x,y)$. 
+
+\no $\dis g''_\alpha(0)=\cos^2\alpha f_{xx}(0,0)
++2\sin\alpha\cos\alpha f_{xy}(0,0)+\sin^2\alpha f_{yy}(0,0)
+=(\cos\alpha\ \sin\alpha)\left[          
+  \begin{array}{cc}   
+    f_{xx} & f_{xy} \\  
+    f_{xy} &f_{yy} \\  
+  \end{array}
+\right]               
+\binom{\cos\alpha}{\sin\alpha}>0\Longrightarrow \left[          
+  \begin{array}{cc}   
+    f_{xx} & f_{xy} \\  
+    f_{xy} &f_{yy} \\  
+  \end{array}
+\right]$ is a positive definite matrix $\Longrightarrow f(0,0)$ is the minimum value of $f(x,y).$ 
+
+\end{solve}
+
+\vspace{1cm}
+
+\no {\heiti 三、（本题满分14分）} 
+
+设曲线 $\Gamma$ 为在 $x^2+y^2+z^2=1, x+z=1, x\gs0, y\gs0, z\gs0$，
+上从 $A(1,0,0)$ 到 $B(0,0,1)$ 的一段。
+求曲线积分 $\dis I=\int_{\Gamma}y\dif x+z\dif y+x\dif z.$
+
+\begin{solve}
+
+$x=1-z,\ (1-z)^2+y^2+z^2=1,\ 2z^2-2z+y^2=0,\ 2\left(z-\dfrac{1}{2}\right)^2+y^2
+=\dfrac{1}{2}, 4\left(z-\dfrac{1}{2}\right)^2+2y^2=1,$ which is the equation of ellipse. 
+Thus we can let $z=\dfrac{1}{2}+\dfrac{1}{2}\sin\theta,\ y=\dfrac{\sqrt{2}}{2}\cos\theta$ and $
+x=1-z=\dfrac{1}{2}-\dfrac{1}{2}\sin\theta,\ \theta$ from $-\dfrac{\pi}{2}$ to $\dfrac{\pi}{2}.$ Then $I=\dis \int_{\Gamma}y\dif x+z\dif y+x\dif z
+=\int_{-\tfrac{\pi}{2}}^{\tfrac{\pi}{2}} 
+\Bigg[\dfrac{\sqrt{2}}{2}\cos\theta\left(-\dfrac{1}{2}\right)\cos\theta
++\left(\dfrac{1}{2}+\dfrac{1}{2}\sin\theta\right)\left(-\dfrac{\sqrt{2}}{2}\right)\sin\theta
++\left(\dfrac{1}{2}-\dfrac{1}{2}\sin\theta\right)\dfrac{1}{2}\cos\theta\Bigg]\dif\theta
+=-\dfrac{\sqrt{2}}{4}\pi+\dfrac{1}{2}.$
+
+\end{solve}
+
+\no {\heiti 四、（本题满分15分）}
+
+\end{spacing}
+
+\begin{spacing}{1}
+
+设函数 $f(x)>0$ 且在实轴上连续，若对任意实数 $t$，
+有 $\dis \int_{-\infty}^{+\infty}e^{-|t-x|}f(x)\dif x \ls1$，
+证明：\[\forall a,b\ (a<b), \int_{a}^{b}f(x)\dif x \ls \frac{b-a+2}{2}.\]
+
+\begin{spacing}{2.5}
+\begin{solve}
+
+Remove the absolute value symbol. $\dis \int_{-\infty}^{+\infty}e^{-|t-x|}f(x)\dif x
+=\int_{-\infty}^t e^{-t+x}f(x)\dif x+\int_t^{+\infty}e^{-x+t}f(x)\dif x
+=e^{-t}\int_{-\infty}^t e^{x}f(x)\dif x+e^t\int_t^{+\infty}e^{-x}f(x)\dif x.$ Let $\dis
+g(t)=e^{-t}\int_{-\infty}^t e^{x}f(x)\dif x,\ h(t)=e^t\int_t^{+\infty}e^{-x}f(x)\dif x$, then 
+$0<g(t)+h(t)\ls 1.\ g'(t)=-g(t)+f(t),\ h'(t)=h(t)-f(t)\Longrightarrow f(x)=\dfrac{g'(x)-h'(x)+g(x)+h(x)}{2}
+\ls\dfrac{1}{2}+\dfrac{g'(x)-h'(x)}{2}\Longrightarrow \intab f(x)\dif x\ls\dfrac{b-a}{2}
++\dfrac{g(b)-g(a)+h(a)-h(b)}{2}
+\ls\dfrac{b-a}{2}+\dfrac{g(a)+h(a)+g(b)+h(b)}{2}
+\ls\dfrac{b-a}{2}+\dfrac{1+1}{2}= \frac{b-a+2}{2}.$
+
+\end{solve}
+
+\no {\heiti 五、（本题满分15分）}
+\end{spacing}
+
+设 $\{a_n\}$ 为一个数列，$p$ 为固定的正整数，
+若 $\lim\limits_{n \to \infty} ( a_{n+p}-a_n)=\lambda$，其中 $\lambda$ 为常数，证明：
+\[\lim\limits_{n \to \infty} \frac{a_n}{n}=\frac{\lambda}{p}.\]
+\begin{spacing}{2.5}
+
+\begin{solve}
+
+Consider $p$ different subsets $\{a_{np+i}\}$ of $\{a_n\}$, let $A_n^{(i)}=a_{(n+1)p+i}-a_{np+i},\ i=0,1,2,\cdots,p-1.$ Then $\limn A_n^{(i)}=\lambda.$ By average value theorem of limit, we obtain 
+
+\no $\limn \dfrac{1}{n}\sumkfn A_k^{(i)}\xlongequal{\text{telescoping sum}}\limn\dfrac{a_{(n+1)p+i}-a_{p+i}}{n}\xlongequal{a_{p+i} \text{ is a fixed number}}
+\limn \dfrac{a_{(n+1)p+i}}{n}=\lambda. $
+
+\no Thus $\limn \dfrac{a_{(n+1)p+i}}{(n+1)p+i}=\limn\dfrac{a_{(n+1)p+i}}{n}\cdot\dfrac{n}{(n+1)p+i}=\dfrac{\lambda}{p}.$ Then $p$ different subsets of $\left\{\dfrac{a_n}{n}\right\}$ converge to the same value $\dfrac{\lambda}{p}$, which indicates that $\left\{\dfrac{a_n}{n}\right\}$ also converges to $\dfrac{\lambda}{p}$. That is, 
+$\limn \frac{a_n}{n}=\frac{\lambda}{p}.$
+
+\end{solve}
+\end{spacing}
+
+\end{spacing}
+
+\newpage
+
+\section{第八届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、填空题（满分30分，共5小题，每小题6分）}
+
+\no 1. 若 $f(x)$ 在点 $x=a$ 处可导，且 $f(a) \neq 0$ ，
+则 $\dis\lim\limits_{n \to +\infty}\left[\frac{f(a+\frac{1}{n})}{f(a)}\right]^n=$ 
+\dlmu{$\exp\left\{\dfrac{f'(a)}{f(a)}\right\}$}。
+
+\begin{solve}
+
+$\limn \left[\frac{f(a+\frac{1}{n})}{f(a)}\right]^n
+=\limn \exp\left\{n\cdot\left[\frac{f(a+\frac{1}{n})}{f(a)}-1\right]\right\}
+=\limn \exp\left\{n\cdot\left[\frac{f(a+\frac{1}{n})-f(a)}{f(a)}\right]\right\}
+=\limn \exp\left\{\dfrac{1}{f(a)}\cdot\left[\frac{f(a+\frac{1}{n})-f(a)}{\tfrac{1}{n}}\right]\right\}
+=\exp\left\{\dfrac{f'(a)}{f(a)}\right\}.$
+
+\end{solve}
+
+\no 2. 若 $f(1)=0, f'(1)$ 存在，求极限
+ $\dis \lim\limits_{x \to 0}\frac{f(\sin^2 x+\cos x)\tan 3x}{(e^{x^2}-1)\sin x}=$
+\dlmu{$\dfrac{3}{2}f'(1)$}。
+
+\begin{solve}
+
+$f(t)-f(1)=f'(\xi)(t-1), \xi\to1$ as $t\to1. $ Thus 
+
+\no $\dis \lim\limits_{x \to 0}\frac{f(\sin^2 x+\cos x)\tan 3x}{(e^{x^2}-1)\sin x}
+=\lim\limits_{x \to 0,\xi\to1} f'(\xi)\dfrac{3(x^2-\tfrac{1}{2}x^2)}{x^2}=\dfrac{3}{2}f'(1).$
+
+\end{solve}
+
+\no 3. 若 $f(x)$ 有连续导数，且 $f(1)=2$。记 $z=f(e^xy^2)$，
+若 $\dis \frac{\partial z}{\partial x}=z$，则 $f(x)$ 在 $x>0$ 范围内的表达式
+为\dlmu{$2x$}。
+
+\begin{solve}
+
+$\dfrac{\partial z}{z}=\partial x,\ \ln z=x+C(y),\ z=C(y)e^x,\ f(1)=2\Longrightarrow
+z=2y^2e^x,\ f(x)=2x.$
+
+\end{solve}
+
+\no 4. 设 $f(x)=e^x\sin 2x$，求 $f^{(4)}(0)=$ \dlmu{$-24$}。 
+
+\begin{solve}
+
+Use Taylor series. $f(x)=\left(1+x+\dfrac{x^2}{2}+\dfrac{x^3}{6}\right)\cdot
+\left(2x-\dfrac{(2x)^3}{6}\right).$ The coefficient of $x^4$ is $\dfrac{1}{3}-\dfrac{4}{3}=-1=\dfrac{f^{(4)}(0)}{4!},$ thus $f^{(4)}(0)=-24.$
+
+\end{solve}
+
+\no 5. 求曲面 $z=\dfrac{x^2}{2}+y^2$ 平行于平面 $2x+2y-z=0$ 的切平面方程
+ \dlmu[4cm]{$2x+2y-z-3=0$}。
+
+\begin{solve}
+
+$(x,2y,-1)//(2,2,-1),\ x=2,\ y=1,\ z=3\Longrightarrow 2(x-2)+2(y-1)-(z-3)=0.$ That is 
+$2x+2y-z-3=0.$
+
+\end{solve}
+
+\end{spacing}
+
+\begin{spacing}{1}
+
+\begin{spacing}{2}
+\no {\heiti 二、（本题满分14分）}
+\end{spacing}
+
+设 $f(x)$ 在 $[0,1]$ 上可导，$f(0)=0$，且当 $x\in (0,1), 0<f'(x)<1$。
+试证：当 $a\in (0,1)$，\[\Bigg[\int_{0}^a f(x)\dif x \Bigg]^2>\int_{0}^a f^3(x)\dif x.\]
+
+\begin{solve}
+
+$\dis F(a)=\Bigg[\int_{0}^a f(x)\dif x \Bigg]^2-\int_{0}^a f^3(x)\dif x,\ 
+F'(a)=2f(a)\intd_0^af(x)\dif x-f^3(a)
+=f(a)\Bigg[2\intd_0^af(x)\dif x-f^2(a)\Bigg].\ 
+G(a)=2\intd_0^af(x)\dif x-f^2(a),\ G'(a)=2f(a)-2f(a)f'(a)=2f(a)(1-f'(a))>0.$
+Then $G(a)>G(0)=0,\ F'(a)=f(a)G(a)>0, F(a)>F(0)=0.$ Thus $\dis\Bigg[\int_{0}^a f(x)\dif x \Bigg]^2>\int_{0}^a f^3(x)\dif x.$
+
+\end{solve}
+
+\begin{spacing}{2}
+\no {\heiti 三、（本题满分14分）}
+\end{spacing}
+
+某物体所在的空间区域为 $\Omega: x^2+y^2+2z^2\ls x+y+2z$，
+密度函数为 $x^2+y^2+z^2$，求质量 \[ M=\iiint_{\Omega}\left(x^2+y^2+z^2\right)\dif x\dif y\dif z.\]
+
+\begin{solve}
+
+Perform coordinate transformation. 
+$\dis\Omega: \left(x-\dfrac{1}{2}\right)^2+\left(y-\dfrac{1}{2}\right)^2+2\left(z-\dfrac{1}{2}\right)^2\ls1.$ Let $u=x-\dfrac{1}{2},\ v=y-\dfrac{1}{2}, w=\sqrt{2}\left(z-\dfrac{1}{2}\right).\ \Omega': u^2+v^2+w^2\ls1,\ J=\dfrac{\partial(x,y)}{\partial(u,v)}=\dfrac{1}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}.$ Thus 
+$$\begin{aligned}
+M&=\iiint_{\Omega'}\Bigg[\left(u+\dfrac{1}{2}\right)^2+\left(v+\dfrac{1}{2}\right)^2+\left(\dfrac{w}{\sqrt{2}}+\dfrac{1}{2}\right)^2\Bigg]\cdot \dfrac{\sqrt{2}}{2}\dif u\dif v\dif w\\
+&=\dfrac{\sqrt{2}}{2}\iiint_{\Omega'}\Bigg(u^2+v^2+\dfrac{w^2}{2}+\dfrac{3}{4} \Bigg)
+\dif u\dif v\dif w\\
+&=\dfrac{\sqrt{2}}{2}\cdot\dfrac{3}{4}\cdot\dfrac{4\pi}{3}+\dfrac{\sqrt{2}}{2}\cdot\dfrac{5}{6}\iiint_{\Omega'}\rho^2\cdot \rho^2\sin\varphi\dif \rho\dif\varphi\dif\theta\\
+&=\dfrac{\sqrt{2}\pi}{2}+\dfrac{5\sqrt{2}}{12}\cdot\dfrac{4\pi}{5}\\
+&=\dfrac{5\sqrt{2}\pi}{6}.
+\end{aligned}$$
+
+\end{solve}
+
+\begin{spacing}{2}
+\no {\heiti 四、（本题满分14分）}
+\end{spacing}
+
+设函数 $f(x)$ 在闭区间 $[0,1]$ 上具有连续导数，$f(0)=0, f(1)=1$。证明：
+\[\lim\limits_{n \to \infty}n\left[\int_{0}^1f(x)\dif x-\frac{1}{n}\sum\limits_{k=1}^n f\left(\frac{k}{n}\right)\right]=-\frac{1}{2}.\]
+
+\begin{solve}
+
+Let $x_k=\dfrac{k}{n}$, 
+$$\begin{aligned}
+\limn n\left[\int_{0}^1f(x)\dif x-\frac{1}{n}\sum\limits_{k=1}^n f\left(\frac{k}{n}\right)\right]
+&=\limn n \left[\sumkn\intd_{x_k}^{x_{k+1}}[f(x)-f(x_k)]\dif x\right]\\
+&=\limn n\left[\sumkn\intd_{x_k}^{x_{k+1}}\dif x\intd_{x_k}^xf'(y)\dif y\right]\\
+&=
+\end{aligned}$$
+
+\end{solve}
+
+\begin{spacing}{2.5}
+\no {\heiti 五、（本题满分14分）}
+
+设函数 $f(x)$ 在区间 $[0,1]$ 上连续，且 $\dis I=\int_{0}^1 f(x)\dif x\neq0$。证明在 $(0,1)$ 内存在不同的两点 $x_1, x_2$，使得 $\dis\frac{1}{f(x_1)}+\frac{1}{f(x_2)}=\frac{2}{I}.$
+\end{spacing}
+
+\begin{solve}
+
+
+
+\end{solve}
+
+\begin{spacing}{2}
+\no {\heiti 六、（本题满分14分）}
+
+设函数 $f(x)$ 在 $(-\infty, +\infty)$ 上可导，且 $f(x)=f(x+2)=f\left(x+\sqrt{3}\right)$。
+用Fourier级数理论证明 $f(x)$ 为常数。
+\end{spacing}
+
+\begin{solve}
+
+
+
+\end{solve}
+
+\end{spacing}
+
+\newpage
+\section{第七届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、填空题（总分30分，共5小题，每小题6分）}
+
+\no 1. 极限 $\dis\lim\limits_{n \to \infty} 
+n \left(\frac{\sin\frac{\pi}{n}}{n^2+1}+\frac{\sin\frac{2\pi}{n}}{n^2+2}
++\dots+\frac{\sin\pi}{n^2+n}\right)=$ \rule{3cm}{0.5pt}。
+
+\no 2. 设函数 $z=z(x,y)$ 由方程 $\dis F\left(x+\frac{z}{y},y+\frac{z}{x}\right)=0$ 所决定，
+其中 $F(u,v)$ 具有连续偏导数，且 $xF_u+yF_v\neq0$。
+则 $\dis x\frac{\partial z}{\partial x}+y\frac{\partial z}{\partial y}=$ \rule{3cm}{0.5pt}。
+（本小题结果要求不显含 $F$ 及其偏导数）
+
+\no 3. 曲面 $z=x^2+y^2+1$ 在点 $M(1,-1,3)$ 的切平面与曲面 $z=x^2+y^2$ 
+所围区域的体积为 \rule{2cm}{0.5pt}。
+
+\vspace{0.3cm}
+
+\begin{spacing}{1}
+\no 4. 函数 $f(x)=\left\{  \begin{array}{lr}  3,x\in [-5,0) \\  0,x\in [0,5)   \end{array}  \right. $ 
+在 $(-5,5]$ 的傅里叶级数在 $x=0$ 收敛的值为 \rule{2cm}{0.5pt}。
+\end{spacing}
+
+\vspace{0.6cm}
+
+\no 5. 设区间 $(0, +\infty)$ 上的函数 $\dis u(x)=\int_{0}^{+\infty}e^{-xt^2}\dif t$，
+则 $u(x)$ 的初等函数表达形式为  \rule{2cm}{0.5pt}。
+
+\end{spacing}
+
+\begin{spacing}{1}
+
+\begin{spacing}{2}
+\no {\heiti 二、（本题满分12分）}
+\end{spacing}
+
+设 $M$ 是以三个正半轴为母线的半圆锥面，求其方程。
+\vspace{5cm}
+
+\begin{spacing}{2}
+\no {\heiti 三、（本题满分12分）}
+
+设 $f (x)$ 在 $(a,b)$ 内二次可导，且存在常数 $\alpha, \beta$ ，使得对于 $\forall x\in(a,b), 
+f'(x) =\alpha f (x) + \beta f''(x)$，证明：$f (x)$ 在 $(a,b)$ 内无穷次可导。
+
+\end{spacing}
+
+\newpage
+\begin{spacing}{2.5}
+\no {\heiti 四、（本题满分14分）}
+\end{spacing}
+
+求幂级数 $\dis\sum\limits_{n=0}^{\infty}\frac{n^3+2}{(n+1)!}(x-1)^n$ 
+的收敛域与和函数。
+\vspace{4cm}
+
+\begin{spacing}{2}
+\no {\heiti 五、（本题满分16分）}
+
+设函数 $f(x)$ 在 $[0,1]$ 上连续，且 $\dis\int_{0}^1f(x)\dif x=0, \int_{0}^1xf(x)\dif x=1$。试证：
+
+（1）$\exists \ x_0\in [0,1]$ 使 $|f(x_0)|>4$，
+
+（2）$\exists \ x_1\in [0,1]$ 使 $|f(x_1)|=4$。
+
+\end{spacing}
+\vspace{4cm}
+
+\begin{spacing}{2}
+\no {\heiti 六、（本题满分16分）}
+
+设 $f (x, y)$ 在 $x^2 + y^2 \ls 1$ 上有连续的二阶偏导数，
+$f_{xx}^2+2f_{xy}^2+f_{yy}^2\ls M$。若 $f (0, 0) = f_x(0,0)=f_y (0,0)= 0$，证明：
+\[\left|\quad \iint\limits_{x^2+y^2\ls 1}f(x,y)\dif x\dif y\ \right|\ls \frac{\pi\sqrt{M}}{4}.\]
+
+\end{spacing}
+
+\end{spacing}
+
+\newpage
+\section{第六届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、填空题（总分30分，共5小题，每小题6分）}
+
+\no 1. 已知 $\dis y_1 = e^x$ 和 $\dis y_2 = xe^x$ 是齐次二阶常系数线性微分方程的解，则该微分方程是\rule{3cm}{0.5pt}。
+
+\no 2. 设有曲面 $S:z = x^2 + 2y^2$ 和平面 $\pi : 2x + 2y + z = 0$，
+则与 $\pi$ 平行的 $S$ 的切平面方程是 \rule{3cm}{0.5pt}。
+
+\no 3. 设函数 $y = y(x)$ 由方程 $\dis x=\int_{1}^{y-x}\sin^2\left(\frac{\pi t}{4}\right)\dif t$ 所确定，
+则 $\dis \frac{\dif y}{\dif x}\bigg|_{x=0}=$ \rule{3cm}{0.5pt}。
+
+\begin{spacing}{3}
+\no 4. 设 $\dis x_n=\sum\limits_{k=1}^{n}\frac{k}{(k+1)!}$，则 $\dis \lim\limits_{n \to\infty}x_n=$ \rule{3cm}{0.5pt}。
+
+\no 5. 已知 $\limit_{x\to 0}\left(1+x+\frac{f(x)}{x}\right)^{\tfrac{1}{x}}=e^3 $，
+则 $\limit_{x\to0}\frac{f(x)}{x^2}=$ \rule{3cm}{0.5pt}。
+
+\end{spacing}
+\end{spacing}
+
+\begin{spacing}{1}
+
+\begin{spacing}{2.5}
+\no {\heiti 二、（本题满分12分）}
+\end{spacing}
+
+设 $n$ 为正整数, 计算
+ $\dis I=\int_{e^{-2n\pi}}^{1}\left|\frac{\dif}{\dif x}\cos\left(\ln\frac{1}{x}\right)\right|\dif x.$
+\vspace{4cm}
+
+\begin{spacing}{2}
+\no {\heiti 三、（本题满分14分）}
+
+设函数 $f ( x)$ 在 $[0,1]$ 上有二阶导数，且有正的常数 $A, B$ 使得 $| f (x) |\ls A, | f''(x) |\ls B$。
+证明：对任意 $x\in[0,1]$，有 $\dis |f'(x)|\ls 2A+\frac{B}{2}.$
+\end{spacing}
+\vspace{4cm}
+
+\begin{spacing}{2}
+\no {\heiti 四、（本题满分14分）}
+
+（1）设一球缺高为 $h$，所在球半径为 $R$。证明该球缺的体积为
+$\dis\frac{\pi}{3}(3R-h)h^2$，球冠的面积为 $2\pi Rh$。
+
+（2）设球体 $(x-1)^2+(y-1)^2+(z-1)^2\ls 12$ 被平面 $P:x+y+z=6$ 所截得的小球缺为 $\Omega$。记球缺上的球冠为 $\Sigma$，方向指向球外，求第二型曲面积分
+$\dis I=\iint_{\Sigma}x\dif y\dif z+y\dif z\dif x+z\dif x\dif y$。
+\end{spacing}
+
+\vspace{4cm}
+
+\begin{spacing}{2}
+\no {\heiti 五、（本题满分15分）}
+
+设 $f(x)$ 在 $[a,b]$ 上非负连续，严格单增，且存在 $x_n\in[a ,b ]$ 使得
+$\dis\left[f(x_n)\right]^n=\frac{1}{b-a}\int_{a}^b\left[f(x)\right]^n\dif x$，求
+$\limit_{n\to\infty}x_n$。
+\end{spacing}
+\vspace{4cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 六、（本题满分15分）}
+\end{spacing}
+
+设 $\dis A_n=\frac{n}{n^2+1}+\frac{n}{n^2+2^2}+\dots+\frac{n}{n^2+n^2}$
+，求 $\limit_{n\to\infty}n\left(\frac{\pi}{4}-A_n\right)$。
+
+\end{spacing}
+
+\newpage
+\section{第五届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、解答下列各题（总分24分，共4小题，每小题6分）}
+
+\no 1. 求极限 $\limit_{n\to\infty}\left(1+\sin \pi\sqrt{1+4n^2}\right)^n$。
+\vspace{2cm}
+
+\no 2. 证明广义积分 $\dis\int_{0}^{+\infty}\frac{\sin x}{x}\dif x$ 不是绝对收敛的。
+\vspace{2cm}
+
+\no 3. 设函数 $y=y(x)$ 由 $x^3+3x^2y-2y^3=2$ 所确定，求 $y(x)$ 的极值。
+\vspace{2cm}
+
+\no 4. 过曲线 $y \sqrt[3]{x} \ (x\gs0)$ 上的点 $A$ 作切线，使该切线与曲线及 $x$ 轴所围成的平面图形的面积为 $\dis\frac{3}{4}$，求点 $A$ 的坐标。
+\vspace{2cm}
+
+\end{spacing}
+
+\begin{spacing}{1}
+
+\begin{spacing}{2.5}
+\no {\heiti 二、（本题满分12分）}
+\end{spacing}
+
+计算定积分 $\dis I=\int_{-\pi}^{\pi}\frac{x\sin x\cdot\arctan e^x}{1+\cos^2 x}\dif x.$
+
+\newpage
+\begin{spacing}{2}
+\no {\heiti 三、（本题满分12分）}
+\end{spacing}
+
+设 $f(x)$ 在 $x=0$ 处存在二阶导数 $f''(0)$，且 $\limit_{x\to0}\frac{f(x)}{x}=0$。 
+证明：级数 $\dis\sum\limits_{n=1}^\infty \left| f\left(\frac{1}{n}\right)\right|$ 收敛。
+\vspace{5cm}
+
+\begin{spacing}{2}
+\no {\heiti 四、（本题满分10分）}
+\end{spacing}
+
+设 $|f(x)|\ls\pi, f'(x)\gs m>0\ (a\ls x\ls b)$，
+证明：$\dis\left|\int_{a}^b\sin f(x)\dif x\right|\ls \frac{2}{m}$.
+\vspace{5cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 五、（本题满分14分）}
+\end{spacing}
+
+设 $\Sigma$ 是一个光滑封闭曲面，方向朝外，给定第二型的曲面积分
+\[I=\iint\limits_{\Sigma}(x^3-x)\dif y\dif z+(2y^3-y)\dif z\dif x+(3z^3-z)\dif x\dif y.\]
+试确定曲面 $\Sigma$，使得积分 $I$ 的值最小，并求出该最小值。
+
+\newpage
+
+\begin{spacing}{2.5}
+\no {\heiti 六、（本题满分14分）}
+
+设 $\dis I_{a}(r)=\int_{C}\frac{y\dif x-x\dif y}{\left(x^2+y^2\right)^a}$，
+其中 $a$ 为常数，曲线 $C$ 为椭圆 $x^2+xy+y^2=r^2$，取正向。
+求极限 $\limit_{r\to+\infty} I_{a}(r)$.
+
+\end{spacing}
+\vspace{6cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 七、（本题满分14分）}
+\end{spacing}
+
+判断级数 $\dis\sum\limits_{n=1}^\infty \frac{1+\frac{1}{2}+\dots+\frac{1}{n}}{(n+1)(n+2)}$
+的敛散性，若收敛，求其和。
+
+\end{spacing}
+
+\newpage
+\section{第四届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、解答下列各题，写出重要步骤（总分30分，共5小题，每小题6分）}
+
+\no 1. 求极限 $\limit_{n\to\infty}(n!)^{\tfrac{1}{n^2}}.$
+\vspace{3cm}
+
+\begin{spacing}{1}
+\no 2. 求通过直线 
+$\dis L: \left\{  \begin{array}{lr}  2x+y-3z+2=0 \\  5x+5y-4z+3=0   \end{array}  \right. $
+的两个相互垂直的平面 $\pi_1$ 和 $\pi_2$，使其中一个平面过点
+
+\vspace{0.5cm}
+\no $(4,-3,1)$.
+\vspace{3cm}
+\end{spacing}
+
+\no 3. 已知函数 $z=u(x,y)\ e^{ax+by}$，且 $\dis\frac{\partial^2u}{\partial x\partial y}=0$，
+确定常数 $a$ 和 $b$，使函数 $z=z(x,y)$ 满足方程
+
+\no$\dis \frac{\partial^2z}{\partial x\partial y}-\frac{\partial z}{\partial x}
+-\frac{\partial z}{\partial y}+z=0.$
+\vspace{3cm}
+
+\no 4. 设函数 $u(x)$ 连续可微, $u(2) = 1$, 且 $\dis\int_L(x+2y)u\dif x+\left(x+u^3\right)u\dif y$
+在右半平面上与路径无关，求 $u(x)$.
+\vspace{3cm}
+
+\no 5. 求极限 $\limit_{x\to+\infty}\sqrt[3]{x}\cdot\int_{x}^{x+1}\frac{\sin t}{\sqrt{t+\cos t}}\dif t.$
+\vspace{3cm}
+
+\end{spacing}
+
+\begin{spacing}{1}
+
+\newpage
+\begin{spacing}{2.5}
+\no {\heiti 二、（本题满分10分）}
+\end{spacing}
+
+计算 $\dis\int_{0}^{+\infty}e^{-2x}|\sin x|\dif x.$
+\vspace{5cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 三、（本题满分10分）}
+\end{spacing}
+
+求方程 $\dis x^2\sin \frac{1}{x}=2x-501$ 的近似解，精确到 0.001.
+\vspace{5cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 四、（本题满分12分）}
+
+设函数 $y=f(x)$ 二阶可导，且 $f''(x)>0, f(0)=0, f'(0)=0$，
+求 $\limit_{x\to0}\frac{x^3f(u)}{f(x)\sin^3u}$，其中 $u$ 是曲线 $y=f(x)$
+上点 $P(x,f(x))$ 处切线在 $x$ 轴的截距。
+\end{spacing}
+
+\newpage
+\begin{spacing}{2.5}
+\no {\heiti 五、（本题满分12分）}
+\end{spacing}
+
+求最小实数 $C$ ，使得对满足 $\dis\int_{0}^{1}| f (x) | \dif x =1$ 的连续的函数 $f (x)$，
+都有 $\dis\int_{0}^{1}f \left(\sqrt{ x}\right)\dif x \ls C .$
+\vspace{4cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 六、（本题满分12分）}
+
+设 $f(x)$ 为连续函数, $t>0$. 区域 $\Omega$ 是由抛物面 $z=x^2+y^2$
+和球面 $x^2+y^2+z^2=t^2$ 所围起来的部分.
+定义三重积分 $\dis F(t)=\iiint\limits_\Omega f (x^2+y^2+z^2)\dif V,$
+求 $F(t)$ 的导数 $F'(t)$.
+\end{spacing}
+
+\vspace{4cm}
+
+\begin{spacing}{3}
+\no {\heiti 七、（本题满分14分）}
+
+设 $\dis\sum\limits_{n=1}^{\infty}a_n$ 与 $\dis\sum\limits_{n=1}^{\infty}b_n$
+为正项级数，证明：
+
+（1）若 $\limit_{n\to\infty}\left(\frac{a_n}{a_{n+1}b_n}-\frac{1}{b_{n+1}}\right)>0$，
+则  $\dis\sum\limits_{n=1}^{\infty}a_n$ 收敛；
+
+（2）若 $\limit_{n\to\infty}\left(\frac{a_n}{a_{n+1}b_n}-\frac{1}{b_{n+1}}\right)<0$，
+且 $\dis\sum\limits_{n=1}^{\infty}b_n$ 发散，
+则  $\dis\sum\limits_{n=1}^{\infty}a_n$ 发散。
+
+\end{spacing}
+
+\end{spacing}
+
+\newpage
+\section{第三届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、解答下列各题，写出重要步骤（总分24分，共4小题，每小题6分）}
+
+\no 1. $\limit_{x\to0}\frac{(1+x)^{\tfrac{2}{x}}-e^2[1-\ln (1+x)]}{x}.$
+\vspace{4.5cm}
+
+\no 2. 设 $a_n=\cos \dfrac{\theta}{2}\cdot\cos\dfrac{\theta}{2^2}\cdots\cos\dfrac{\theta}{2^n} $，
+求 $\limn a_n.$
+\vspace{4.5cm}
+
+\no 3. 求 $\dis\iint_D\sgn(xy-1)\dif x\dif y$，
+其中 $D=\{(x,y)|0\ls x\ls2, 0\ls y\ls 2\}.$ 
+\vspace{4.5cm}
+
+\no 4. 求幂级数 $\sumn\frac{2n-1}{2^n}x^{2n-2}$ 的和函数，
+并求级数 $\sumn\frac{2n-1}{2^{2n-1}}$ 的和。
+
+\end{spacing}
+
+\newpage
+
+\begin{spacing}{1}
+
+\begin{spacing}{2.5}
+\no {\heiti 二、（本题满分16分）}
+
+设 $\dis\{a_n\}_{n=0}^\infty$ 为数列，$a, \lambda$ 为有限数，求证：
+
+\no（1）如果 $\limn a_n=a$，则 $\limn \frac{a_1+a_2+\cdots+a_n}{n}=a.$
+
+\no（2）如果存在正整数 $p$，使得 $\limn (a_{n+p}-a_n)=\lambda$，
+则 $\limn \frac{a_n}{n}=\frac{\lambda}{p}.$
+\end{spacing}
+\vspace{4.5cm}
+
+\begin{spacing}{2}
+\no {\heiti 三、（本题满分15分）}
+
+
+设函数 $f (x)$ 在闭区间 $[-1, 1]$ 上具有连续的三阶导数，且 $f (-1) = 0,  f (1)=1, f '(0) = 0 $. 求证：在开区间 $(-1, 1)$ 内至少存在一点 $x_0$，使得 $ f '''(x_0 ) = 3$.
+
+\vspace{4.5cm}
+
+
+\no {\heiti 四、（本题满分15分）}
+
+
+在平面上， 有一条从点 $(a,0)$ 向右的射线，其线密度为 $\rho$ 。
+在点 $(0, h)$ 处（其中 $h > 0$）有一质量为 $m$ 的质点，
+求射线对该质点的引力。
+\end{spacing}
+
+\newpage
+\begin{spacing}{2.5}
+\no {\heiti 五、（本题满分15分）}
+
+
+设 $z = z(x, y)$ 是由方程 $\dis F\left(z+\frac{1}{x}, z-\frac{1}{y}\right)=0$ 确定的隐函数，
+其中$F$具有连续的二阶偏导数，且$F_u(u,v)=F_v(u,v)\neq0.$ 求证：
+$\dis x^2\pzx+y^2\pzy=0$ 和 
+$x^3\pzxx+xy(x+y)\pzxy+y^3\pzyy=0.$
+
+\vspace{9cm}
+
+
+\no {\heiti 六、（本题满分15分）}
+
+
+设函数 $f (x)$ 连续，$a,b, c$ 为常数，
+$\Sigma$ 是单位球面 $x^2  y^ 2  z^ 2 = 1$。记第一型曲面积分
+$\dis I=\iint\limits_\Sigma f(ax+by+cz)\dif S$。求证:
+$\dis I=2\pi\int_{-1}^1f\left(\sqrt{a^2+b^2+c^2}\cdot u\right)\dif u.$
+
+\end{spacing}
+\end{spacing}
+
+\newpage
+\section{第二届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、计算下列各题，写出重要步骤（总分25分，共5小题，每小题5分）}
+
+\no 1. 设 $\dis x_n=(1+a)\cdot(1+a^2)\cdots\left(1+a^{2^n}\right)$，
+其中 $|a|<1$，求 $\limn x_n$.
+\vspace{3.5cm}
+
+\no 2. 求 $\limxi e^{-x}\left(1+\frac{1}{x}\right)^{x^2}.$
+\vspace{3.5cm}
+
+\no 3. 设 $s>0$，求 $I_n=\intzi e^{-sx}\cdot x^n\dif x,\ (n=1,2,\cdots).$
+\vspace{3.5cm}
+
+\no 4. 设函数 $f ( t )$ 有二阶连续导数，$r=\sqrt{x^2+y^2}$，
+$g(x,y)=f\left(\dfrac{1}{r}\right)$，
+求 $\dfrac{\partial^2g}{\partial x^2}+\dfrac{\partial^2g}{\partial y^2}.$
+\vspace{3.5cm}
+
+\begin{spacing}{1}
+\no 5. 求直线 $l_1:\left\{  \begin{array}{lr}  x-y=0 \\  z=0   \end{array}  \right. $
+与直线 $\dis l_2: \frac{x-2}{4}=\frac{y-1}{-2}=\frac{z-3}{-1}$ 的距离。
+\end{spacing}
+
+\end{spacing}
+
+\newpage
+\begin{spacing}{1}
+
+\begin{spacing}{2}
+\no {\heiti 二、（本题满分15分）}
+
+
+设函数 $f(x)$ 在 $(-\infty, +\infty)$ 上具有二阶导数，并且 $f''(x)>0, \limxpi f'(x)=\alpha>0,
+\limxni f'(x)=\beta<0$，且存在一点 $x_0$ ，使得 $f(x_0)<0$。证明：
+方程 $f(x)=0$ 在 $(-\infty, +\infty)$ 恰有两个实根。
+\vspace{4cm}
+\end{spacing}
+
+\begin{spacing}{2}
+\no {\heiti 三、（本题满分15分）}
+\end{spacing}
+
+设函数 $y = f (x)$ 由参数方程 
+$\left\{  \begin{array}{lr}  x=2t+t^2 \\  y=\psi(t)   \end{array}  \right. (t>-1)$ 所确定。
+且 $\dfrac{\dif^2y}{\dif x^2}=\dfrac{3}{4(1+t)}$，其中 $\psi(t)$ 具有
+
+\begin{spacing}{3}
+\no 二阶导数，曲线 $y =\psi (t)$ 与 $y=\dis\int_{1}^{t^2}e^{-u^2}\dif u+\dfrac{3}{2e}$ 
+在 $t = 1$ 处相切。求函数 $\psi(t)$.
+\end{spacing}
+\vspace{4cm}
+
+\begin{spacing}{2.5}
+\no {\heiti 四、（本题满分15分）}
+
+
+设 $\dis a_n>0, \ S_n=\sum\limits_{k=1}^n a_k$，证明：
+\vspace{0.2cm}
+
+\no（1）当 $\alpha>1$ 时，级数 $\dis\sum\limits_{n=1}^{+\infty}\dfrac{a_n}{S_{n}^\alpha}$ 收敛。
+
+\no（2）当 $\alpha\ls 1$ ，且 $S_n\to\infty\ (n\to\infty)$ 时，
+级数 $\dis\sum\limits_{n=1}^{+\infty}\dfrac{a_n}{S_{n}^\alpha}$ 发散。
+\end{spacing}
+
+\newpage
+\begin{spacing}{2}
+\no {\heiti 五、（本题满分15分）}
+
+
+设 $l$ 是过原点、方向为 $(\alpha, \beta, \gamma)$ (其中 $\alpha^2+\beta^2+\gamma^2=1$)
+的直线，均匀椭球 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}\ls 1$
+（其中 $0<c<b<a$，密度为1）绕 $l$ 旋转。
+
+（1）求其转动惯量；
+
+（2）求其转动惯量关于方向 $(\alpha, \beta, \gamma)$ 的最大值与最小值。
+
+\vspace{7cm}
+
+
+\no {\heiti 六、（本题满分15分）}
+
+设函数 $\varphi(x)$ 具有连续的导数，在围绕原点的任意光滑的简单闭曲线 $C$ 上，
+曲线积分 $\dis\oint_C \frac{2xy\dif x+\varphi(x)\dif y}{x^4+y^2}$ 的值为常数。
+
+（1）设 $L$ 为正向闭曲线 $(x-2)^2+y^2=1$，证明：
+$\dis\oint_L  \frac{2xy\dif x+\varphi(x)\dif y}{x^4+y^2}=0$；
+
+（2）求函数 $\varphi(x)$；
+
+（3）设 $C$ 是围绕原点的光滑简单正向闭曲线，求 $\dis\oint_C \frac{2xy\dif x+\varphi(x)\dif y}{x^4+y^2}.$
+
+\end{spacing}
+
+\end{spacing}
+
+\newpage
+\section{第一届全国大学生数学竞赛预赛（非数学类）试题}
+
+\begin{spacing}{2.5}
+
+\no {\heiti 一、填空题（总分20分，共4小题，每小题5分）}
+\end{spacing}
+
+\no 1. 计算 $\dis\iint_D \frac{(x+y)\ln\left(1+\dfrac{y}{x}\right)}{\sqrt{1-x-y}}\dif x\dif y=
+$\rule{3cm}{0.5pt}，其中区域 $D$ 是由直线 $x+y=1$ 与两坐标轴
+
+\begin{spacing}{2.5}
+\no 所围的三角形区域。
+
+\no 2. 设 $f (x)$ 是连续函数，且满足 $\dis f(x)=3x^2-\int_{0}^2f(x)\dif x-2$，
+则 $f(x)=$ \rule{3cm}{0.5pt}。
+
+\no 3. 曲面 $z=\dfrac{x^2}{2}+y^2-2$ 平行于平面 $2x+2y-z=0$ 的切平面方程是 \rule{3cm}{0.5pt}。
+
+\no 4. 设函数 $y = y(x)$ 由方程 $\dis xe^{ f ( y) }= e^y \ln 29$ 确定，其中 $f$ 具有二阶导数，
+且 $f'\neq1$，则 $\dfrac{\dif^2 y}{\dif x^2}=$ \rule{3cm}{0.5pt}。
+
+\end{spacing}
+
+\begin{spacing}{2.5}
+\no {\heiti 二、（本题满分5分）}
+
+求极限 $\limxz\left(\frac{e^x+e^{2x}+\cdots+e^{nx}}{n}\right)^{\tfrac{e}{x}}$，其中 $n$ 是给定的
+正整数。
+\vspace{5cm}
+
+\no {\heiti 三、（本题满分15分）}
+
+
+设函数 $f (x)$ 连续，$\dis g(x)=\int_{0}^1f(xt)\dif t$，且 $\limxz\frac{f(x)}{x}=A$，
+$A$ 为常数，求 $g'(x)$ 并讨论 $g'(x)$ 在 $x = 0$ 处的连续性。
+
+
+\newpage
+\no {\heiti 四、（本题满分15分）}
+
+已知平面区域 $D = \{(x, y) | 0 \ls x \ls\pi ,0 \ls y \ls\pi \} $，
+$L$ 为 $D$ 的正向边界，试证：
+
+（1）$\dis\oint_L xe^{\sin y}\dif y-ye^{-\sin x}\dif x
+=\oint_L xe^{-\sin y}\dif y-ye^{\sin x}\dif x$；
+
+（2）$\dis\oint_L xe^{\sin y}\dif y-ye^{-\sin x}\dif x\gs\frac{5}{2}\pi^2$.
+
+\vspace{5cm}
+
+\no {\heiti 五、（本题满分10分）}
+
+
+已知 $y_1 = xe^x + e ^{2x} ,
+y_2 = xe^x + e^{- x},
+y_3 = xe^x + e^{2 x}- e^{-x}$ 
+是某二阶常系数线性非齐次微分方程的三个解，试求此微分方程。
+\vspace{5cm}
+
+\no {\heiti 六、（本题满分10分）}
+
+设抛物线 $y = ax^2 + bx + 2\ln c$ 过原点，当 $0 \ls x \ls1$ 
+时，$ y \gs 0$。又已知该抛物线与 $x$ 轴及直线 $x =1$ 所围图形的面
+积为 $\dfrac{1}{3}$。试确定 $a,b, c$ 使此图形绕 $x$ 轴旋转一周而成的旋转体的体积 $V$ 最小。
+\vspace{4cm}
+
+\newpage
+
+\no {\heiti 七、（本题满分15分）}
+
+已知 $u_n(x)$ 满足 $u'_n(x)=u_n(x)+x^{n-1}e^x,\ (n=1,2,\cdots)$，
+且 $u_n(1)=\dfrac{e}{n}$，求函数项级数 $\sumn u_n(x)$之和。
+\vspace{10cm}
+
+\no {\heiti 八、（本题满分10分）}
+
+求 $x\to1^-$ 时，与 $\dis\sum\limits_{n=0}^{\infty}x^{n^2}$ 等价的无穷大量。
+
+\end{spacing}
+
+\end{document}
