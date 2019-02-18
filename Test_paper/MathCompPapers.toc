@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}第十届全国大学生数学竞赛预赛（非数学类）试题}{2}
+\contentsline {section}{\numberline {2}第九届全国大学生数学竞赛预赛（非数学类）试题}{4}
+\contentsline {section}{\numberline {3}第八届全国大学生数学竞赛预赛（非数学类）试题}{6}
+\contentsline {section}{\numberline {4}第七届全国大学生数学竞赛预赛（非数学类）试题}{8}
+\contentsline {section}{\numberline {5}第六届全国大学生数学竞赛预赛（非数学类）试题}{10}
+\contentsline {section}{\numberline {6}第五届全国大学生数学竞赛预赛（非数学类）试题}{12}
+\contentsline {section}{\numberline {7}第四届全国大学生数学竞赛预赛（非数学类）试题}{15}
+\contentsline {section}{\numberline {8}第三届全国大学生数学竞赛预赛（非数学类）试题}{18}
+\contentsline {section}{\numberline {9}第二届全国大学生数学竞赛预赛（非数学类）试题}{21}
+\contentsline {section}{\numberline {10}第一届全国大学生数学竞赛预赛（非数学类）试题}{24}
+\contentsfinish 
