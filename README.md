@@ -1,5 +1,5 @@
 # CMC
-This repositorie contains three pdfs.
+This repository contains three pdfs.
 - A conclution to CMC
 - CMC test papers from the first to the tenth (latest)
 - CMC test papers with solutions
